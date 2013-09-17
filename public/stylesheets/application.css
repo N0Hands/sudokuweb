@@ -7,3 +7,13 @@ display: inline-block;
 ;
 	height: 30px;
 }
+
+body {
+	text-align: center;
+	font-family: Arial;
+}
+
+#sudoku {
+	font-size: 0;
+	text-align: center;
+}
