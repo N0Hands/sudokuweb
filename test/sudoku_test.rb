@@ -1,7 +1,7 @@
 require_relative '../lib/sudoku'
 require_relative '../lib/cell'
 require 'minitest/autorun'
-require 'ruby-debug'
+# require 'ruby-debug'
 
 class SudokuTest < Minitest::Test
 
@@ -46,6 +46,11 @@ class SudokuTest < Minitest::Test
     assert sudoku.solved?
     puts
     puts sudoku.to_board
+  end
+
+  def test_sudoku_hides_some_numbers
+    # rows.each_index
+    
   end
 
   def test_splitting_input_into_cells    

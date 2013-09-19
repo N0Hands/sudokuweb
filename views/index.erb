@@ -1,32 +1,35 @@
 <html>
 <head>
 <title>sudoku game</title>
- <!-------link to css stylesheet------->
+ <!--link to css stylesheet-->
  
- <link href="/stylesheets/application.css" rel="stylesheet" type="text"/css">
+ <link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
  
 </head>
 <body>
-<h1>Life is too short to be playing sudoku</h1>
+<h1>U * k * o * d * U * s</h1>
 <div id="sudoku">
 
-	<!-----one div for each row---->
+	<!--one div for each row -->
+	
 	<% 3.times do |row| %>
 		<div class="row">
 		
-		<!--------we want to create separate div elements for boxes to style them using css--->
-		
 			<% 3.times do |box| %>
 				<div class="box">
+
 			
-			<!---each box will have nine cells---->
+			<!---each box will have nine cells-->
 				<% 3.times do |cell_row| %>
 					<div class="cell-row">
+
 					<% 3.times do |cell| %>
 						<div class="cell">
-						 
-						 <!---every cell will have an input field --->
-						 <input type="text" maxlength="1" autocomplete="off">
+
+						 <!---every cell will have an input field -->
+						<% cell_index = row * 27 + box * 9 + cell_row * 3 + cell %>
+						<% cell_value = @current_solution[cell_index] %>
+						<input type="text" maxlength="1" autocomplete="off" value="<%= cell_value %>" >
 						 </div>
 						 <% end %>
 						</div>
@@ -34,7 +37,10 @@
 				</div>
 			<% end %>
 		</div>
-	<% end %>
+	<% end %>	
+	
 </div>
+
+
 </body>
 </html>

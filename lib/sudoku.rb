@@ -1,4 +1,7 @@
+require_relative './cell'
 class Sudoku
+
+
   
   COLUMN_SIZE = 9
   SIZE = COLUMN_SIZE * COLUMN_SIZE

@@ -3,17 +3,24 @@ display: inline-block;
 }
 
 .cell input {
-	width: 30px
-;
+	width: 30px;
 	height: 30px;
+	font-weight: bold;
+	text-align: center;
+	font-size: 15px;
+
 }
 
 body {
 	text-align: center;
 	font-family: Arial;
+
 }
+
 
 #sudoku {
 	font-size: 0;
 	text-align: center;
+	outline: 10px;
+	outline-color: black;
 }
