@@ -1,3 +1,7 @@
+
+
+
+
 div.box, div.cell {
 display: inline-block;
 }
@@ -17,10 +21,22 @@ body {
 
 }
 
-
 #sudoku {
 	font-size: 0;
 	text-align: center;
 	outline: 10px;
 	outline-color: black;
 }
+
+.incorrect {
+	background-color: yellow;
+}
+
+.value_provided {
+	background-color: #DDD;
+}
+
+#flash {
+  margin: 20px;
+}
+

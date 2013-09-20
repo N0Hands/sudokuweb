@@ -1,3 +1,5 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 gem 'sinatra'
 gem 'shotgun'
+gem 'sinatra-partial'
+gem 'rack-flash3'
