@@ -13,7 +13,7 @@
 </div>
 	<div id="sudoku">
 		<form action="/" method="post">	
-		<!--one div for each row -->
+			<!--one div for each row -->
 		<% 3.times do |row| %>
 			<div class="row">hackpad
 				<% 3.times do |box| %>
@@ -22,7 +22,10 @@
 						<% 3.times do |cell_row| %>
 							<div class="cell-row">
 								<% 3.times do |cell| %>
-								<%= partial :cell, :locals=>{:cell_index => row*27+box*3+cell_row*9+cell} %> }
+								
+
+
+								<%= partial :cell, :locals=>{:cell_index => row*27+box*3+cell_row*9+cell} %> 
 								<% end %>
 							</div>
 						<% end %>
@@ -33,8 +36,17 @@
 
       <!-- all boxes, rows and cells -->
       <button>Check solution</button>
-    </form>
+    </form>    	
+
+	<form action="/reset" method="get">
+	<button>Reset Game</button>
+	</form>
+
+	<form action="/solution" method="get">
+	<button>Give Up</button>
+	</form>
 </div>
+
 
 
 </body>

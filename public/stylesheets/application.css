@@ -12,7 +12,6 @@ display: inline-block;
 	font-weight: bold;
 	text-align: center;
 	font-size: 15px;
-
 }
 
 body {
@@ -24,16 +23,16 @@ body {
 #sudoku {
 	font-size: 0;
 	text-align: center;
-	outline: 10px;
-	outline-color: black;
+
 }
 
 .incorrect {
-	background-color: yellow;
+	background-color: orange;
+	border: dashed; color: gray;
 }
 
 .value_provided {
-	background-color: #DDD;
+	background-color: gray;
 }
 
 #flash {

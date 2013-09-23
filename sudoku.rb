@@ -33,13 +33,21 @@ def puzzle(sudoku)
   end
 end
 
-# def puzzle(sudoku)
-#   a = (0..80).to_a.sample(12)
-#   a.each do |index|
-#   sudoku[index] = ''
+def hardpuzzle(sudoku)
+#     sudoku.map.with_index do |sudoku,index|
+#     if Random.rand(100)<15
+#       sudoku
+#     end
 #   end
-#   sudoku
 # end
+
+
+  a = (0..30).to_a.sample(12)
+  a.each do |index|
+  sudoku[index] = ''
+  end
+  sudoku
+end
 
 # Does chars become a problem later on..? When we introduce the series of arguments to be used for guessing etc?
 
@@ -51,12 +59,22 @@ def generate_new_puzzle_if_necessary
   session[:current_solution] = session[:puzzle]
 end
 
+def generate_new_hard_puzzle_if_necessary
+  return if session[:current_solution]
+  sudoku = random_sudoku
+  session[:solution] = sudoku
+  session[:hardpuzzle] = puzzle(sudoku)
+  session[:current_solution] = session[:hardpuzzle]
+end
+
+
 def prepare_to_check_solution
   @check_solution = session[:check_solution]
   if @check_solution
-    flash[:notice] = "Incorrect values are highlighted in yellow"
+    flash[:notice] = "Patience, grasshopper."
   end
-  session[:check_solution] = nil
+  session[:check_solution] 
+  # = nil
 end
 
 get '/reset' do
@@ -78,16 +96,6 @@ get '/' do
   erb :index
 end
 
-get '/last-visit' do
-  "previous visit to homepage: #{session[:last_visit]}"
-end
-
-get '/solution' do
-  @current_solution = session[:solution]
-  @solution = session[:solution]
-  @puzzle = session[:solution]
-  erb :index
-end
 
 post '/' do
   boxes = params["cell"].each_slice(9).to_a
@@ -99,7 +107,43 @@ post '/' do
   redirect to("/")
 end
 
+get '/hard' do
+  prepare_to_check_solution
+  generate_new_hard_puzzle_if_necessary
+  @current_solution = session[:current_solution] || session[:hardpuzzle]
+  @solution = session[:solution]
+  @puzzle = session[:hardpuzzle]
+  erb :index
 
+end
+
+post '/hard' do
+  boxes = params["cell"].each_slice(9).to_a
+  cells = (0..8).to_a.inject([]) {|memo, i|
+    memo += boxes[i/3*3, 3].map{|box| box[i%3*3, 3] }.flatten
+  }
+  session[:current_solution] = cells.map{|value| value.to_i}.join
+  session[:current_solution] = cells.map{|value| value.to_i }.join
+  session[:check_solution] = true
+  redirect to("/")
+end
+
+get '/last-visit' do
+  "previous visit to homepage: #{session[:last_visit]}"
+end
+
+get '/solution' do
+  @current_solution = session[:solution]
+  @solution = session[:solution]
+  @puzzle = session[:solution]
+  erb :index
+end
+
+helpers do
+  def cell_value(value)
+    value.to_i == 0 ? '' : value
+  end
+end
 
 
 
